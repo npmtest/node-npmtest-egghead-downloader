@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-egghead-downloader/node_modules/egghead-downloader/dist/app.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-egghead-downloader">npmtest-egghead-downloader (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-egghead-downloader/node_modules/egghead-downloader/dist/app.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">34.04% <small>(64 / 188)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">12.96% <small>(7 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">25.71% <small>(9 / 35)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">31.58% <small>(54 / 171)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-egghead-downloader/node_modules/egghead-downloader/dist/</a> &#187; app.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//#! /usr/bin/env node
+'use strict';
+&nbsp;
+let getCSRFToken = (() =&gt; {
+  var _ref = _asyncToGenerator(<span class="fstat-no" title="function not covered" >function* () {</span>
+<span class="cstat-no" title="statement not covered" >    const body = yield rp(SIGN_IN_URL);</span>
+<span class="cstat-no" title="statement not covered" >    const pattern = /&lt;meta name="csrf-token" content="(.*)" \/&gt;/;</span>
+<span class="cstat-no" title="statement not covered" >    const [, CSRFToken] = pattern.exec(body) || [];</span>
+<span class="cstat-no" title="statement not covered" >    return CSRFToken;</span>
+  });
+&nbsp;
+  return <span class="fstat-no" title="function not covered" >function getCSRFToken() {</span>
+<span class="cstat-no" title="statement not covered" >    return _ref.apply(this, arguments);</span>
+  };
+})();
+&nbsp;
+let authenticate = (() =&gt; {
+  var _ref2 = _asyncToGenerator(<span class="fstat-no" title="function not covered" >function* (email, password) {</span>
+<span class="cstat-no" title="statement not covered" >    const CSRFToken = yield getCSRFToken();</span>
+<span class="cstat-no" title="statement not covered" >    const options = {</span>
+      method: 'POST',
+      uri: SIGN_IN_URL,
+      form: {
+        'user[email]': email,
+        'user[password]': password,
+        'authenticity_token': CSRFToken
+      },
+      simple: false,
+      resolveWithFullResponse: true
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const response = yield rp(options);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (response.statusCode !== 302) {</span>
+<span class="cstat-no" title="statement not covered" >      throw Error('Failed to authenticate.');</span>
+    }
+  });
+&nbsp;
+  return <span class="fstat-no" title="function not covered" >function authenticate(_x, _x2) {</span>
+<span class="cstat-no" title="statement not covered" >    return _ref2.apply(this, arguments);</span>
+  };
+})();
+&nbsp;
+let doTheMagic = (() =&gt; {
+  var _ref3 = _asyncToGenerator(function* () {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (program.email) {
+<span class="cstat-no" title="statement not covered" >      if (program.password === true) {</span>
+<span class="cstat-no" title="statement not covered" >        const { password } = yield prompt({</span>
+          type: 'password',
+          name: 'password',
+          message: 'Egghead.io password'
+        });
+<span class="cstat-no" title="statement not covered" >        program.password = password;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        yield authenticate(program.email, program.password);</span>
+<span class="cstat-no" title="statement not covered" >        isPro = true;</span>
+<span class="cstat-no" title="statement not covered" >        success('Authenticated!');</span>
+      } catch (err) {
+<span class="cstat-no" title="statement not covered" >        return error(err);</span>
+      }
+    }
+&nbsp;
+    const videos = yield getVideoData();
+<span class="cstat-no" title="statement not covered" >    if (!videos.length) {</span>
+<span class="cstat-no" title="statement not covered" >      error('no video found!');</span>
+    }
+<span class="cstat-no" title="statement not covered" >    success(`Found ${ videos.length } ${ videos.length &gt; 1 ? 'videos' : 'video' }`);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    createOutputDirectoryIfNeeded();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const padLength = String(videos.length).length;</span>
+<span class="cstat-no" title="statement not covered" >    const padZeros = '0'.repeat(padLength);</span>
+<span class="cstat-no" title="statement not covered" >    let i = 0;</span>
+<span class="cstat-no" title="statement not covered" >    for (const { url, filename } of videos) {</span>
+<span class="cstat-no" title="statement not covered" >      i++;</span>
+<span class="cstat-no" title="statement not covered" >      let paddedCounter = `${ padZeros }${ i }`.slice(-padLength);</span>
+<span class="cstat-no" title="statement not covered" >      const p = path.join(outputDir, program.count ? `${ paddedCounter }-${ filename }` : filename);</span>
+<span class="cstat-no" title="statement not covered" >      if (!program.force &amp;&amp; fileExists(p)) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(`File ${ paddedCounter }-${ filename } already exists, skip`);</span>
+<span class="cstat-no" title="statement not covered" >        continue;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      progress.start(`Downloading video ${ paddedCounter } out of ${ videos.length }: '${ filename }'`);</span>
+<span class="cstat-no" title="statement not covered" >      const stream = fs.createWriteStream(p);</span>
+<span class="cstat-no" title="statement not covered" >      yield new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        request(url).on('error', <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >          error(`download of '${ url }' failed!`, false);</span>
+<span class="cstat-no" title="statement not covered" >          reject();</span>
+        }).on('end', <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >          resolve();</span>
+        }).pipe(stream);
+      });
+<span class="cstat-no" title="statement not covered" >      stream.close();</span>
+<span class="cstat-no" title="statement not covered" >      progress.stop(true);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    success('Done!');</span>
+  });
+&nbsp;
+  return function doTheMagic() {
+    return _ref3.apply(this, arguments);
+  };
+})();
+&nbsp;
+// loads the url and parses it, when it's playlist/serie loads the video pages
+// too, and returns an array with the video data
+&nbsp;
+&nbsp;
+let getVideoData = (() =&gt; {
+  var _ref4 = _asyncToGenerator(function* () {
+    try {
+      const [, lessonSlug] = /egghead.io\/lessons\/([^\?]*)/.exec(urlValue) || [];
+      let source = yield rp(urlValue);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (lessonSlug) {</span>
+<span class="cstat-no" title="statement not covered" >        let videoData;</span>
+<span class="cstat-no" title="statement not covered" >        success('The URL is a lesson');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (isPro) {</span>
+<span class="cstat-no" title="statement not covered" >          const response = yield rp({</span>
+            uri: `https://egghead.io/api/v1/lessons/${ lessonSlug }/next_up`,
+            json: true
+          });
+<span class="cstat-no" title="statement not covered" >          const { lessons } = response.list || { lessons: [] };</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          videoData = lessons.filter(<span class="fstat-no" title="function not covered" >function (lesson) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return lesson.slug === lessonSlug;</span>
+          }).map(<span class="fstat-no" title="function not covered" >function (lesson) {</span>
+<span class="cstat-no" title="statement not covered" >            const pattern = /https:\/\/.*\/lessons\/.*\/(.*)\?.*/;</span>
+<span class="cstat-no" title="statement not covered" >            const [url, filename] = pattern.exec(lesson.download_url);</span>
+<span class="cstat-no" title="statement not covered" >            return { url, filename };</span>
+          })[0];
+        } else {
+<span class="cstat-no" title="statement not covered" >          videoData = parseLessonPage(source);</span>
+        }
+&nbsp;
+        // process the lesson page
+<span class="cstat-no" title="statement not covered" >        if (videoData) {</span>
+<span class="cstat-no" title="statement not covered" >          return [videoData];</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          error(`failed to parse the lesson page '${ urlValue }'}`);</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        let lessonURLs = [];</span>
+<span class="cstat-no" title="statement not covered" >        success('The URL is a playlist or series');</span>
+&nbsp;
+        // get the urls of the lessions
+<span class="cstat-no" title="statement not covered" >        const re = /&lt;h4 class="title"&gt;&lt;a href="(https:\/\/egghead.io\/lessons\/.+?)"&gt;/g;</span>
+        // regexp in js have no matchAll method or something similiar..
+<span class="cstat-no" title="statement not covered" >        let match;</span>
+<span class="cstat-no" title="statement not covered" >        while (match = re.exec(source)) {</span>
+<span class="cstat-no" title="statement not covered" >          lessonURLs.push(match[1]);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        success(`Found ${ lessonURLs.length } ${ lessonURLs.length &gt; 1 ? 'lessons' : 'lesson' }`);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (isPro) {</span>
+<span class="cstat-no" title="statement not covered" >          const firstLesson = lessonURLs[0];</span>
+<span class="cstat-no" title="statement not covered" >          const pattern = /egghead.io\/lessons\/(.*)\?/;</span>
+<span class="cstat-no" title="statement not covered" >          const [, lessonSlug] = pattern.exec(firstLesson) || [];</span>
+<span class="cstat-no" title="statement not covered" >          const response = yield rp({</span>
+            uri: `https://egghead.io/api/v1/lessons/${ lessonSlug }/next_up`,
+            json: true
+          });
+<span class="cstat-no" title="statement not covered" >          const { lessons } = response.list || { lessons: [] };</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          return lessons.map(<span class="fstat-no" title="function not covered" >function (lesson) {</span></span>
+<span class="cstat-no" title="statement not covered" >            const pattern = /https:\/\/.*\/lessons\/.*\/(.*)\?.*/;</span>
+<span class="cstat-no" title="statement not covered" >            const [url, filename] = pattern.exec(lesson.download_url);</span>
+<span class="cstat-no" title="statement not covered" >            return { url, filename };</span>
+          });
+        }
+<span class="cstat-no" title="statement not covered" >        progress.start('Fetching lesson pages');</span>
+        // fetch and process the lessons, start all requests at the same time to save time.
+<span class="cstat-no" title="statement not covered" >        const promises = lessonURLs.map(processLessonURL);</span>
+<span class="cstat-no" title="statement not covered" >        const result = yield Promise.all(promises.map(reflect));</span>
+<span class="cstat-no" title="statement not covered" >        progress.stop(true);</span>
+        // get the urls that succeded and thos that failed
+<span class="cstat-no" title="statement not covered" >        const videoURLs = result.filter(<span class="fstat-no" title="function not covered" >function (v) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return v.state === 'resolved';</span>
+        }).map(<span class="fstat-no" title="function not covered" >function (v) {</span>
+<span class="cstat-no" title="statement not covered" >          return v.value;</span>
+        });
+<span class="cstat-no" title="statement not covered" >        const failed = result.filter(<span class="fstat-no" title="function not covered" >function (v) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return v.state === 'rejected';</span>
+        });
+        // check if we have some lesson pages that failed (wrong url or paid)
+<span class="cstat-no" title="statement not covered" >        if (failed.length) {</span>
+<span class="cstat-no" title="statement not covered" >          error(`Failed to parse the following lesson pages: ${ failed.map(<span class="fstat-no" title="function not covered" >function (v) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return `'${ v.value }'`;</span>
+          }).join(',') }. They might be for pro subscribers only`, false);
+        }
+<span class="cstat-no" title="statement not covered" >        return videoURLs;</span>
+      }
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      error(`fetching the url '${ urlValue }' failed!`);</span>
+    }
+  });
+&nbsp;
+  return function getVideoData() {
+    return _ref4.apply(this, arguments);
+  };
+})();
+&nbsp;
+// fetches the lesson page and calls parseLessonPage on it
+&nbsp;
+&nbsp;
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { <span class="cstat-no" title="statement not covered" >reject(error); <span class="cstat-no" title="statement not covered" ></span>return; </span>} <span class="missing-if-branch" title="if path not taken" >I</span>if (info.done) { <span class="cstat-no" title="statement not covered" >resolve(value); </span>} else { return Promise.resolve(value).then(<span class="fstat-no" title="function not covered" >function (value) {</span> <span class="cstat-no" title="statement not covered" >step("next", value); </span>}, <span class="fstat-no" title="function not covered" >function (err) {</span> <span class="cstat-no" title="statement not covered" >step("throw", err); </span>}); } } return step("next"); }); }; }
+&nbsp;
+const program = require('commander');
+const pkg = require('../package.json');
+const chalk = require('chalk');
+const requestPromise = require('request-promise');
+const request = require('request');
+const PleasantProgress = require('pleasant-progress');
+const path = require('path');
+const fs = require('fs');
+const inquirer = require('inquirer');
+&nbsp;
+let urlValue;
+let outputDir;
+let isPro = false;
+const prompt = inquirer.createPromptModule();
+const progress = new PleasantProgress();
+const rp = requestPromise.defaults({ jar: true });
+const SIGN_IN_URL = 'https://egghead.io/users/sign_in';
+&nbsp;
+program.version(pkg.version).arguments('&lt;url&gt; [output-dir]').option('-e, --email &lt;email&gt;', 'Account email (only required for Pro accounts)').option('-p, --password [password]', 'Account password (only required for Pro accounts)', true).option('-c, --count', 'Add the number of the video to the filename (only for playlists and series)').option('-f, --force', 'Overwriting existing files').action((url, output) =&gt; {
+<span class="cstat-no" title="statement not covered" >  urlValue = url;</span>
+<span class="cstat-no" title="statement not covered" >  outputDir = output ? path.resolve(output) : process.cwd();</span>
+});
+program.parse(process.argv);
+&nbsp;
+<span class="missing-if-branch" title="else path not taken" >E</span>if (process.argv.slice(2).length &lt; 2) {
+  program.outputHelp();
+  process.exit();
+}
+&nbsp;
+<span class="missing-if-branch" title="else path not taken" >E</span>if (!/egghead.io\/(lessons|series|playlists|courses)\//.test(urlValue)) {
+  error('unsupported url!');
+}
+&nbsp;
+// await is only supported in functions (with the async keyword)
+doTheMagic();
+&nbsp;
+<span class="fstat-no" title="function not covered" >function fileExists(p) {</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    return fs.statSync(p).isFile();</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function processLessonURL(url) {</span>
+<span class="cstat-no" title="statement not covered" >  return new Promise((() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    var _ref5 = _asyncToGenerator(<span class="fstat-no" title="function not covered" >function* (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >      rp(url).then(<span class="fstat-no" title="function not covered" >function (source) {</span></span>
+<span class="cstat-no" title="statement not covered" >        const videoData = parseLessonPage(source);</span>
+<span class="cstat-no" title="statement not covered" >        if (videoData) {</span>
+<span class="cstat-no" title="statement not covered" >          resolve(videoData);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          reject(url);</span>
+        }
+      }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        reject(url);</span>
+      });
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >function (_x3, _x4) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return _ref5.apply(this, arguments);</span>
+    };
+  })());
+}
+&nbsp;
+// parses the lesson page, returns the video data if found.
+<span class="fstat-no" title="function not covered" >function parseLessonPage(source) {</span>
+<span class="cstat-no" title="statement not covered" >  const re = /&lt;meta itemprop="name" content="([^"]+?)".+?&lt;meta itemprop="contentURL" content="http[^"]+?.wistia.com\/deliveries\/(.+?)\.bin"/;</span>
+<span class="cstat-no" title="statement not covered" >  const result = re.exec(source);</span>
+<span class="cstat-no" title="statement not covered" >  if (result) {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      filename: result[1],
+      url: `https://embed-ssl.wistia.com/deliveries/${ result[2] }/file.mp4`
+    };
+  }
+}
+&nbsp;
+// creates a directory
+<span class="fstat-no" title="function not covered" >function createOutputDirectoryIfNeeded() {</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    const stats = fs.lstatSync(outputDir);</span>
+<span class="cstat-no" title="statement not covered" >    if (!stats.isDirectory()) {</span>
+<span class="cstat-no" title="statement not covered" >      error(`Can't create the output directory '${ outputDir }' because a file with the same name exists`);</span>
+    }
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      fs.mkdirSync(outputDir);</span>
+    } catch (err) {
+<span class="cstat-no" title="statement not covered" >      error(`Creating the output directory '${ outputDir }' failed with error '${ err }'`);</span>
+    }
+  }
+}
+&nbsp;
+// helper functions
+<span class="fstat-no" title="function not covered" >function success(message) {</span>
+<span class="cstat-no" title="statement not covered" >  console.log(chalk.green(message));</span>
+}
+&nbsp;
+function error(message, exit = true) {
+  console.log(chalk.red(`Error: ${ message }`));
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (exit) {
+    process.exit(1);
+  }
+}
+&nbsp;
+// wraps a promise in another promise that resolves when the promise either resolves or rejects
+<span class="fstat-no" title="function not covered" >function reflect(promise) {</span>
+<span class="cstat-no" title="statement not covered" >  return promise.then(x =&gt; (<span class="cstat-no" title="statement not covered" >{ state: 'resolved', value: x })</span>, e =&gt; (<span class="cstat-no" title="statement not covered" >{ state: 'rejected', value: e })</span>);</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 20 2017 18:57:26 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
